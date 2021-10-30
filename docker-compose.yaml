@@ -9,6 +9,8 @@ services:
     restart: always
     ports:
       - "8080:80"
+      - "8000:8000"
+      - "8002:8002"
     container_name: cloud_servers
     volumes:
       - rct_cloud_data:/shared
