@@ -1,6 +1,6 @@
 services:
   db:
-    image: mysql:5.7.2
+    image: mysql:5.7
     container_name: seafile-mysql
     environment:
       - MYSQL_ROOT_PASSWORD=db_dev  # Requested, set the root's password of MySQL service.
