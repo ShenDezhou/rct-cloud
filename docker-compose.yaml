@@ -30,6 +30,8 @@ services:
     container_name: seafile
     ports:
       - "80:80"
+      - "8000:8000"
+      - "8082:8082"
 #      - "443:443"  # If https is enabled, cancel the comment.
     volumes:
       - rct_cloud_data:/shared   # Requested, specifies the path to Seafile data persistent store.
