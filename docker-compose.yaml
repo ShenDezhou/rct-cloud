@@ -1,0 +1,23 @@
+services:
+  ftpweb:
+    image: seafileltd/seafile:latest
+    environment:
+      - SEAFILE_SERVER_HOSTNAME=cloud.transformers.science
+      - SEAFILE_ADMIN_EMAIL=tsinghua9boy@sina.com
+      - SEAFILE_ADMIN_PASSWORD=
+#    network_mode: host
+    restart: always
+    ports:
+      - "8080:80"
+    container_name: cloud_servers
+    volumes:
+      - rct_cloud_data:/shared
+
+volumes:
+  rct_cloud_data:
+
+
+networks:
+  rct_cloud_storage_backend:
+    external: true
+    driver: bridge
