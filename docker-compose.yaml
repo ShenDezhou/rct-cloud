@@ -50,7 +50,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 100M
+          memory: 200M
 
 volumes:
   rct_mysql_data:
