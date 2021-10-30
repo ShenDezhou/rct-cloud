@@ -9,6 +9,10 @@ services:
       - rct_mysql_data:/var/lib/mysql  # Requested, specifies the path to MySQL data persistent store.
     networks:
       - seafile-net
+    deploy:
+      resources:
+        limits:
+          memory: 100M
 
   memcached:
     image: memcached:1.5.6
