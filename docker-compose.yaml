@@ -13,19 +13,19 @@ services:
     deploy:
       resources:
         limits:
-          memory: 200M
+          memory: 100M
 
   memcached:
     image: memcached:1.5.6
     container_name: seafile-memcached
-    entrypoint: memcached -m 256
+    entrypoint: memcached -m 64
     networks:
       - seafile-net
     restart: always
     deploy:
       resources:
         limits:
-          memory: 256M
+          memory: 64M
 
   seafile:
     image: seafileltd/seafile-mc:latest
@@ -52,7 +52,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 2000M
+          memory: 200M
 
 volumes:
   rct_mysql_data:
