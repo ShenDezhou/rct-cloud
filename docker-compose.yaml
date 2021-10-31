@@ -1,6 +1,6 @@
 services:
   db:
-    image: mysql:5.7
+    image: mariadb:10.5
     container_name: seafile-mysql
     environment:
       - MYSQL_ROOT_PASSWORD=db_dev  # Requested, set the root's password of MySQL service.
@@ -12,26 +12,24 @@ services:
     deploy:
       resources:
         limits:
-          memory: 100M
+          memory: 500M
 
   memcached:
     image: memcached:1.5.6
     container_name: seafile-memcached
-    entrypoint: memcached -m 16
+    entrypoint: memcached -m 256
     networks:
       - seafile-net
     deploy:
       resources:
         limits:
-          memory: 16M
+          memory: 256M
 
   seafile:
     image: seafileltd/seafile-mc:latest
     container_name: seafile
     ports:
       - "80:80"
-      - "8000:8000"
-      - "8082:8082"
 #      - "443:443"  # If https is enabled, cancel the comment.
     volumes:
       - rct_cloud_data:/shared   # Requested, specifies the path to Seafile data persistent store.
@@ -41,7 +39,7 @@ services:
 #      - TIME_ZONE=Asia/Shanghai # Optional, default is UTC. Should be uncomment and set to your local time zone.
       - SEAFILE_SERVER_HOSTNAME=cloud.transformers.science
       - SEAFILE_ADMIN_EMAIL=tsinghua9boy@sina.com
-      - SEAFILE_ADMIN_PASSWORD=rct123
+      - SEAFILE_ADMIN_PASSWORD=
       - SEAFILE_SERVER_LETSENCRYPT=false   # Whether use letsencrypt to generate cert.
     restart: always
     depends_on:
@@ -52,7 +50,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 200M
+          memory: 2000M
 
 volumes:
   rct_mysql_data:
